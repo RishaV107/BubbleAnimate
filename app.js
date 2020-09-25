@@ -11,8 +11,9 @@ function Circle(x, dx, y, dy, r) {
   this.r = r;
   this.draw = function () {
     ctx.beginPath();
-    ctx.arc(x, y, r, 0, 2 * Math.PI);
+    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
     ctx.strokeStyle = "blue";
+    ctx.fill();
     ctx.stroke();
   };
   this.update = function () {
@@ -31,8 +32,17 @@ var circArr = [];
 for (var i = 0; i < 100; i++) {
   var x = 1 + Math.floor(Math.random() * innerWidth);
   var y = 1 + Math.floor(Math.random() * innerHeight);
-  var r = 10 + Math.floor(Math.random() * 40);
+  var r = 10 + Math.floor(Math.random() * 30);
   var dx = 1 + Math.floor(Math.random() * 8);
   var dy = 1 + Math.floor(Math.random() * 8);
   circArr.push(new Circle(x, dx, y, dy, r));
+}
+
+animate();
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
+  for (var i = 0; i < circArr.length; i++) {
+    circArr[i].update();
+  }
 }
