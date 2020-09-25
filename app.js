@@ -19,5 +19,20 @@ function Circle(x, dx, y, dy, r) {
     if (this.x + this.r > innerWidth || this.x - this.r < 0) {
       this.dx = -this.dx;
     }
+    if (this.y + this.r > innerHeight || this.y - this.r < 0) {
+      this.dy = -this.dy;
+    }
+    this.x += this.dx;
+    this.y += this.dy;
+    this.draw();
   };
+}
+var circArr = [];
+for (var i = 0; i < 100; i++) {
+  var x = 1 + Math.floor(Math.random() * innerWidth);
+  var y = 1 + Math.floor(Math.random() * innerHeight);
+  var r = 10 + Math.floor(Math.random() * 40);
+  var dx = 1 + Math.floor(Math.random() * 8);
+  var dy = 1 + Math.floor(Math.random() * 8);
+  circArr.push(new Circle(x, dx, y, dy, r));
 }
